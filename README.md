@@ -1,4 +1,6 @@
-# Creando una Red Social
+# Red Social Women Today
+
+Women today, es una comunidad virtual abierta, donde convergen mujeres emprendedoras y exponen sus habilidades, talento y conocimiento, con ganas de superarse y fortalecer su autonomía económica. ¡Únete a nostras y atrevete a inventar tu propio camino! 
 
 ## Índice
 
