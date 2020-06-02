@@ -6,27 +6,14 @@ Women today, es una comunidad virtual abierta, donde convergen mujeres emprended
 
 * [1. Preámbulo](#1-preámbulo)
 * [2. Resumen del proyecto](#2-resumen-del-proyecto)
-* [3. Objetivos de aprendizaje](#3-objetivos-de-aprendizaje)
-* [4. Consideraciones generales](#4-consideraciones-generales)
-* [5. Criterios de aceptación mínimos del proyecto](#5-criterios-de-aceptación-mínimos-del-proyecto)
+* [3. Proceso de Diseño (Prototipado) :pencil2:](#4-consideraciones-generales)
+* [4. Proceso de Diseño (Prototipado) :pencil2:](#4-consideraciones-generales)
+* [5. Diseño de interfaz de Usuario](#5-diseño de interfaz de usuario)
 * [6. Hacker edition](#6-hacker-edition)
 * [7. Entrega](#7-entrega)
 * [8. Pistas, tips y lecturas complementarias](#8-pistas-tips-y-lecturas-complementarias)
 
 ***
-
-## 1. Preámbulo
-
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
-sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
-vivir sin ellas.
-
-Hay redes sociales de todo tipo y para todo tipo de intereses. Por ejemplo,
-en una ronda de financiamiento con inversionistas, se presentó una red social
-para químicos en la que los usuarios podían publicar artículos sobre sus
-investigaciones, comentar en los artículos de sus colegas, y filtrar artículos
-de acuerdo a determinadas etiquetas o su popularidad, lo más reciente, o lo
-más comentado.
 
 ## 2. Resumen del proyecto
 
@@ -53,18 +40,15 @@ Para realizar este primer prototipo nos enfocamos en los aspectos mas relevantes
 
 ![Screenshot](./img_readme/bajafidelidad.jpg)
 
-## Diseño de Interfaz de Usuario
+## 5. Diseño de Interfaz de Usuario
 
 ### Prototipo de baja fidelidad
 
-En este diseño de Interfaz de Usuario se utilizó Invision como herramienta de diseño visual, puedes verlo a traves de nuestro [link] (https://notificaciones.invisionapp.com/overview/Red-Social-ckan2705v0tw101bkvg9656vk/screens?v=i%2FW%2FrVdbu8slVKCxNbvdow%3D%3D&linkshare=urlcopied).Foto de referencia de nuestro prototipo de baja fidelidad.
+En este diseño de Interfaz de Usuario se utilizó Invision como herramienta de diseño visual, puedes verlo a traves de nuestro [link](https://notificaciones.invisionapp.com/overview/Red-Social-ckan2705v0tw101bkvg9656vk/screens?v=i%2FW%2FrVdbu8slVKCxNbvdow%3D%3D&linkshare=urlcopied).Foto de referencia de nuestro prototipo de baja fidelidad.
+
+![fotobaja](./img_readme/fotobaja.jpeg)
  
- ![bajaFidelidad](./img_readme/fotobaja.png)
- 
-
-
-
-## 3. Objetivos de aprendizaje
+ ## 3. Objetivos de aprendizaje
 
 El objetivo principal de aprendizaje de este proyecto es construir una
 [Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
