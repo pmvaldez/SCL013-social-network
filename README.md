@@ -43,7 +43,7 @@ acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
 
 ⦁	Flujograma realizado para la organizacion y estructura de niestro sitio web:
 
-![Screenshot](img_readme/FlujoGrama.jpg)
+![Screenshot](./img_readme/FlujoGrama.jpg)
 
 ## 4. Proceso de Diseño (Prototipado) :pencil2:
 
@@ -51,7 +51,7 @@ acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
 
 Para realizar este primer prototipo nos enfocamos en los aspectos mas relevantes para los usuarios, plasmando lo que buscarian en nuestra web/app. Una vez identificado esto, distribuimos la informacion de manera practica en lo visual.
 
-![Screenshot](img_readme/baja.jpg)
+![Screenshot](./img_readme/baja.jpg)
 
 ## 3. Objetivos de aprendizaje
 
