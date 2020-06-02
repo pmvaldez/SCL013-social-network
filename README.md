@@ -51,7 +51,7 @@ acceso y loguearse con ella; crear, editar, borrar y _"likear"_ publicacciones.
 
 Para realizar este primer prototipo nos enfocamos en los aspectos mas relevantes para los usuarios, plasmando lo que buscarian en nuestra web/app. Una vez identificado esto, distribuimos la informacion de manera practica en lo visual.
 
-![Screenshot](./img_readme/baja.jpg)
+![Screenshot](./img_readme/bajafidelidad.jpg)
 
 ## 3. Objetivos de aprendizaje
 
