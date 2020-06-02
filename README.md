@@ -53,6 +53,17 @@ Para realizar este primer prototipo nos enfocamos en los aspectos mas relevantes
 
 ![Screenshot](./img_readme/bajafidelidad.jpg)
 
+## Diseño de Interfaz de Usuario
+
+### Prototipo de baja fidelidad
+
+En este diseño de Interfaz de Usuario se utilizó Invision como herramienta de diseño visual, puedes verlo a traves de nuestro [link] (https://notificaciones.invisionapp.com/overview/Red-Social-ckan2705v0tw101bkvg9656vk/screens?v=i%2FW%2FrVdbu8slVKCxNbvdow%3D%3D&linkshare=urlcopied).Foto de referencia de nuestro prototipo de baja fidelidad.
+ 
+ ![bajaFidelidad](./img_readme/fotobaja.png)
+ 
+
+
+
 ## 3. Objetivos de aprendizaje
 
 El objetivo principal de aprendizaje de este proyecto es construir una
