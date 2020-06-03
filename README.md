@@ -27,6 +27,10 @@ Para acceder [Haz click aqui] (https://trello.com/b/1YBjbr5a/red-social)
 
 ## 4. Enfoque de Usuario :busts_in_silhouette:
 
+| Historia de Usuario N°1                                                          | Criterio de Aceptación                                                                                                | Criterios de Terminado                                                  |
+|----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| Yo como nuevo usuario, Quiero crearme una cuenta, Para ingresar a la red social  | Dado que usuario nuevo ingrese sus datos para registrarme, Cuando carga la interfaz, Entonces ingreso a la red social | El nuevo usuario puede ingresar a la red social y ver las publicaciones |
+
 En proceso
 
 ## 5. Proceso de Diseño (Prototipado) :pencil2::
