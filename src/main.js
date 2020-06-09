@@ -1,5 +1,10 @@
-// Este es el punto de entrada de tu aplicacion
+import {configuracionFirebase} from './lib/controladorFirebase.js'
+import {cambioRuta} from './controladorVistas.js'
 
-import { myFunction } from './lib/index.js';
-
-myFunction();
+const init = () =>{
+  configuracionFirebase(); //se llama para que se ejecute esta funcion al iniciar la aplicacion
+  cambioRuta(window.location.hash);
+  window.addEventListener('hashchange', () => {
+  cambioRuta(window.location.hash)});
+};
+window.addEventListener('load', init);
