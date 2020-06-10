@@ -11,8 +11,7 @@ export const registroUsuario = () => {
       <input type="password" id="contrasenaRegistro" placeholder="Ingrese su contraseña" class="pass">
       <button id="registro" class="submit" >Regístrarte</button><br>
       <a>¿Tienes una cuenta? </a><a href='#/login'>Inicia sesión</a><br><br>
-      <a href='#/olvidocontraseña'>¿Olvidaste tu contraseña?</a>
-       </form>
+           </form>
        <h1 id='mensajeRegistro'></h1>
   </div>
   <div class="login">

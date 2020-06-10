@@ -9,7 +9,8 @@ export const ingresarUsuario = () => {
             <form action=''>
               <input type='text' id='correoLogin' placeholder='Correo electrónico' class='correo'>
               <input type='password' id='contrasenaLogin' placeholder='Ingrese su contraseña' class='pass'>
-              <button id='login' class='submit' >Iniciar sesión</button> <br>
+              <button id='login' class='submit' >Iniciar sesión</button> <br> <br>
+              <a href='#/olvidocontraseña'>¿Olvidaste tu contraseña?</a> <br>
               <a>¿No tienes cuenta? </a><a href='#/registro'>Regístrate</a>
             </form>
           <h1 id='mensajeLogin'></h1>
