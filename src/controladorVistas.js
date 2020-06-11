@@ -1,6 +1,7 @@
 import { ingresarUsuario } from './vistas/login.js';
 import { registroUsuario } from './vistas/registro.js';
 import { publicacionUsuario } from './vistas/publicaciones.js';
+import { olvidoContrasenaUsuario } from './vistas/olvidocontrasena.js';
 
 const cambioVista = (hash) => {
   const container = document.getElementById('root');
@@ -18,6 +19,9 @@ const cambioVista = (hash) => {
     case '#/publicaciones':
       container.appendChild(publicacionUsuario());
       break;
+    case '#/olvidocontrasena':
+      container.appendChild(olvidoContrasenaUsuario());
+      break;
     default:
       container.innerHTML = '<h2>error404</h2>';
   }
@@ -29,7 +33,7 @@ export const cambioRuta = ((hash) => {
   if (hash === '#/registro') {
     return cambioVista(hash);
   }
-  if (hash === '#/publicaciones') {
+   if (hash === '#/olvidocontrasena') {
     return cambioVista(hash);
   }
   return cambioVista(hash);
