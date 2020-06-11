@@ -98,3 +98,42 @@ export const funLoginFacebook = () => {
     // ...
   });
 };
+
+
+// Funcion Olvido Contraseña
+export const restablecerContrasena = (correoOlvidoContrasena) => {
+  // [START sendpasswordemail]
+  firebase.auth().sendPasswordResetEmail(correoOlvidoContrasena)
+  .then(function() {
+    window.location.hash = '#/login';
+    // Password Reset Email Sent!
+    // [START_EXCLUDE]
+    alert('Password Reset Email Sent!');
+      // [END_EXCLUDE]
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // [START_EXCLUDE]
+      if (errorCode == 'auth/invalid-email') {
+        alert(errorMessage);
+      } else if (errorCode == 'auth/user-not-found') {
+        alert(errorMessage);
+      }
+      console.log(error);
+      // [END_EXCLUDE]
+ });
+  // [END sendpasswordemail];
+};
+
+// Funcion Cerra Sesion 
+
+export const cerrarSesion = () => {
+firebase.auth().signOut().then(function () {
+  window.location.hash = '#/login';
+  console.log ("correoLogin")
+  // Sign-out successful.
+}).catch(function (error) {
+  // An error happened.
+  });
+};

@@ -17,7 +17,7 @@ export const ingresarUsuario = () => {
       <button type ="button" id="login" class="submit" >Iniciar sesión</button>
       <button id="loginFace" class="fb"><i class="fab fa-facebook-f"></i> Acceder con Facebook</button>
       <button id="loginGoogle" class="goo"><i class="fab fa-google"></i> Acceder con Google</button>
-      <a href='#/olvidocontraseña'>¿Olvidaste tu contraseña?</a> <br>
+      <a href='#/olvidocontrasena'>¿Olvidaste tu contraseña?</a> <br>
       <a>¿No tienes cuenta? </a><a href='#/registro'>Regístrate</a>
       <h1 id='mensajeLogin'></h1>
     </div>
