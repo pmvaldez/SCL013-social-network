@@ -23,9 +23,9 @@ export const publicacionUsuario = () => {
 <br><br><br><br><br><br> 
   <div class="column1">
     <div class="profile-section">
-      <img id="profilePhoto" class="profile-picture" src="${userPhoto}" alt="">
+      <img id="profilePhoto" class="profile-picture" src="" alt="">
     </div>
-      <h2 class="user-name">${userName}</h2>
+      <h2 class="user-name"></h2>
   </div>
   <div class="column2">
   <textarea placeholder="Comparte tus ideas" id="comentario" cols="30" rows="10"></textarea>
@@ -46,9 +46,8 @@ export const publicacionUsuario = () => {
 <div class="footer">
   <p>Copyright by Marcela / Paula & Yosliana / 2020 / Laboratoria013</p>
 </div>
-</div>
-    
-    `;
+</div>    
+`;
   const divElemen = document.createElement('div');
   divElemen.innerHTML = muroEmprendedora;
   return divElemen;
