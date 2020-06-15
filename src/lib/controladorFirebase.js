@@ -116,6 +116,66 @@ export const funLoginFacebook = () => {
   });
 };
 
+export const guardarComentario = () => {
+  const comentario = document.querySelector("#comentario").value;
+  firebase.firestore().collection("comentario").add({
+      coment: comentario,
+      fecha: new Date(),
+    })
+    .then(function (docRef) {
+      document.querySelector("#comentario").value = "";
+      return publicarComentario()
+      //console.log("Document written with ID: ", docRef.id);
+
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
+
+}
+
+
+// Publica Comentario
+export const publicarComentario = () => {
+  const publicarC = document.getElementById("publicarC");
+  publicarC.innerHTML = '';
+  firebase.firestore().collection("comentario").orderBy("fecha", "desc")
+  .onSnapshot((querySnapshot) => {
+
+    querySnapshot.forEach((doc) => {
+      publicarC.innerHTML += `
+    <div id="register" data-id='${doc.id}'>
+    <p>  ${doc.data().coment}  </p>
+    <button id=eliminar>Eliminar</button>
+    <button class='submit'>Editar</button>
+    </div>`
+
+    });
+
+  });
+}
+
+//Carga Imagen
+export const subirImagen = () => {
+  const ref = firebase.storage().ref();
+  const file = document.querySelector("#imagen").files[0];
+  const name = new Date() + '-' + file.name;
+  const metadata = {
+    contentType: file.type
+  }
+  const task = ref.child(name).put(file, metadata);
+  const mensajeLogin = document.getElementById('mensajeLogin');
+  task
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then(url => {
+      mensajeLogin.classList.remove('mensajeError');
+      console.log(url);
+      mensajeLogin.innerHTML = 'Imagen cargada Exitosamente';
+      //alert("Imagen cargada Exitosamente");
+      const image = document.querySelector('#foto');
+      image.src = url;
+    })
+}
 
 // Funcion Olvido Contraseña
 export const restablecerContrasena = (correoOlvidoContrasena) => {

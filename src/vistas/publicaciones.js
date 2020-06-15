@@ -1,4 +1,4 @@
-import { cerrarSesion, getUser } from '../lib/controladorFirebase.js';
+import { cerrarSesion, getUser, publicarComentario, subirImagen, guardarComentario, } from '../lib/controladorFirebase.js';
 export const publicacionUsuario = () => {
   const user = getUser();
   const muroEmprendedora = `
@@ -40,7 +40,13 @@ export const publicacionUsuario = () => {
   <div class="container-button">
     <input class='correo' type="file" id="imagen">
     <img id="foto"/>
-    <button id="btnNewPost" class="btn-post">Publicar</button>
+    <button id="btnGuardarComentario" class="btn-post">Publicar</button>
+    <h1 id='mensajeLogin'></h1>
+    <div id="publicarC"> </div>
+
+
+
+
   </div>
   </div>
   <div class="column3">
@@ -62,6 +68,14 @@ export const publicacionUsuario = () => {
 `;
   const divElemen = document.createElement('div');
   divElemen.innerHTML = muroEmprendedora;
+  
+  const btnGuardarPost = divElemen.querySelector('#btnGuardarComentario');
+ btnGuardarPost.addEventListener('click', () => {
+    publicarComentario(); 
+    subirImagen (); 
+    guardarComentario ();
+  });
+
   const btnCerrarSesion = divElemen.querySelector('#cerrar');
   btnCerrarSesion.addEventListener('click', () => {
     cerrarSesion();
