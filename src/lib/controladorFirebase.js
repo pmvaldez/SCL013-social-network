@@ -58,14 +58,21 @@ export const funLoginUsuario = (correoLogin, contrasenaLogin) => {
 
 // Inicio de sesion con Google
 export const funLoginGoogle = () => {
-  window.location.hash = '#/publicaciones'
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then((result) => {
+  firebase.auth()
+    .signInWithPopup(provider)
+    .then(function (result) { 
     // Esto te da un token de acceso de Google. Puede usarlo para acceder a la API de Google.
-    const token = result.credential.accessToken;
-    // La información de usuario que ha iniciado sesión.
+    
+   const token = result.credential.accessToken;
+   // La información de usuario que ha iniciado sesión.
     const user = result.user;
-    // console.log('user', user);
+    
+    window.location.hash = '#/publicaciones';
+    //console.log('usuario', user);
+    //console.log('foto', user.photoURL);
+    //console.log('Nombre', user.displayName);
+    guardaDatos(user)
   }).catch(function (error) {
     // Manejar errores aquí.
     const errorCode = error.code;
@@ -78,16 +85,25 @@ export const funLoginGoogle = () => {
   });
 };
 
+export const getUser =() =>{
+  return firebase.auth().currentUser
+}
+
 
 // Inicio de sesion con Facebook
 export const funLoginFacebook = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function (result) {
+  firebase.auth()
+  .signInWithPopup(provider)
+  .then(function (result) {
+    console.log('usuario', user);
+    window.location.hash = '#/publicaciones';
     // Esto te da un token de acceso de Facebook. Puede usarlo para acceder a la API de Facebook.
-    const token = result.credential.accessToken;
+       const token = result.credential.accessToken;
     // La información de usuario que ha iniciado sesión.
     const user = result.user;
-    console.log('user', user);
+   // console.log('user', user);
+
   }).catch(function (error) {
     // Manejar errores aquí.
     const errorCode = error.code;
@@ -127,14 +143,40 @@ export const restablecerContrasena = (correoOlvidoContrasena) => {
   // [END sendpasswordemail];
 };
 
-// Funcion Cerra Sesion 
+// Guarda datos 
+export const datosPerfil = (nombre, apellido, ciudad, oficio, fecha) => {
+  
+  firebase.firestore().collection("users").add({
+    uid:user.uid,
+      nombre: nombre,  
+      apellido: apellido,
+      oficio:oficio,
+      ciudad:ciudad,
+      born: fecha
+    })
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      document.querySelector("#nombre").value = "";
+      document.querySelector("#apellido").value = "";
+      document.querySelector("#oficio").value = "";
+      document.querySelector("#ciudad").value = "";
+      document.querySelector("#fecha").value = "";
+    })
+    .catch(function (error) {
+      console.error("Error adding document: ", error);
+    });
 
+}
+
+
+// Funcion Cerra Sesion 
 export const cerrarSesion = () => {
-firebase.auth().signOut().then(function () {
-  window.location.hash = '#/login';
-  console.log ("correoLogin")
-  // Sign-out successful.
-}).catch(function (error) {
-  // An error happened.
-  });
-};
+  firebase.auth().signOut().then(function () {
+    window.location.hash = '#/login';
+    
+    //console.log ("correoLogin")
+    // Sign-out successful.
+  }).catch(function (error) {
+    // An error happened.
+    });
+  };
