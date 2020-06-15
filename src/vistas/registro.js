@@ -20,8 +20,8 @@ export const registroUsuario = () => {
             <input type="text" id="correoRegistro" placeholder="Correo electrónico" class="correo">
             <input type="password" id="contrasenaRegistro" placeholder="Ingrese su contraseña" class="correo">          
           <button type ="button" id="registro" class="submit" >Regístrarte</button>
-          <button id="loginFace" class="fb"><i class="fab fa-facebook-f"></i> Acceder con Facebook</button>
-          <button id="loginGoogle" class="goo"><i class="fab fa-google"></i> Acceder con Google</button>
+          <button type ="button" id="registroFace" class="fb"><i class="fab fa-facebook-f"></i> Acceder con Facebook</button>
+          <button type ="button" id="registroGoogle" class="goo"><i class="fab fa-google"></i> Acceder con Google</button>
           <a>¿Tienes una cuenta? </a><a href='#/login'>Inicia sesión</a><br><br>
           </form>
           <h1 id='mensajeRegistro'></h1> 
@@ -84,9 +84,9 @@ export const registroUsuario = () => {
 
   const divElemen = document.createElement('div');
   divElemen.innerHTML = registroEmprendedora;
-  const btnGoogle = divElemen.querySelector('#loginGoogle');
+  const btnGoogle = divElemen.querySelector('#registroGoogle');
   btnGoogle.addEventListener('click', funLoginGoogle);
-  const btnFacebook = divElemen.querySelector('#loginFace');
+  const btnFacebook = divElemen.querySelector('#registroFace');
   btnFacebook.addEventListener('click', funLoginFacebook);
   const botonRegistro = divElemen.querySelector('#registro');
   botonRegistro.addEventListener('click', () => {

@@ -1,4 +1,4 @@
-import { funLoginUsuario } from '../lib/controladorFirebase.js';
+import { funLoginUsuario, funLoginGoogle, funLoginFacebook } from '../lib/controladorFirebase.js';
 
 export const ingresarUsuario = () => {
   const loginEmprendedora = ` 
@@ -20,8 +20,8 @@ export const ingresarUsuario = () => {
         <input type="text" id="correoLogin" placeholder="Correo electrónico" class="correo">
         <input type="password" id="contrasenaLogin" placeholder="Ingrese su contraseña" class="correo">
         <button type ="button" id="login" class="submit" >Iniciar sesión</button>
-        <button id="loginFace" class="fb"><i class="fab fa-facebook-f"></i> Acceder con Facebook</button>
-        <button id="loginGoogle" class="goo"><i class="fab fa-google"></i> Acceder con Google</button>
+        <button type ="button" id="loginFace" class="fb"><i class="fab fa-facebook-f"></i> Acceder con Facebook</button>
+        <button type ="button" id="loginGoogle" class="goo"><i class="fab fa-google"></i> Acceder con Google</button>
         <a href='#/olvidocontrasena'>¿Olvidaste tu contraseña?</a> <br>
         <a>¿No tienes cuenta? </a><a href='#/registro'>Regístrate</a>
       </form>
@@ -89,5 +89,10 @@ export const ingresarUsuario = () => {
     const contrasenaLogin = document.getElementById('contrasenaLogin').value;
     funLoginUsuario(correoLogin, contrasenaLogin);
   });
+  const btnGoogle = divElemen.querySelector('#loginGoogle');
+  btnGoogle.addEventListener('click', funLoginGoogle);
+  const btnFacebook = divElemen.querySelector('#loginFace');
+  btnFacebook.addEventListener('click', funLoginFacebook);
+
   return divElemen;
 };

@@ -1,4 +1,6 @@
+import { cerrarSesion, getUser } from '../lib/controladorFirebase.js';
 export const publicacionUsuario = () => {
+  const user = getUser();
   const muroEmprendedora = `
   <div class="father">
   <header class="header">
@@ -15,6 +17,8 @@ export const publicacionUsuario = () => {
       <li <a href="#/publicaciones">Perfil</a></li>
       <li <a href="#/eventos">Eventos</a></li>
       <li <a href="#/">Cerrar Sesión</a></li>
+      <button id="cerrar">Cerrar sesión</button>
+      <a href='#/perfildeusuario'><button>Perfil Usuario</button></a>
     </ul>
   </nav>
 </div>
@@ -22,10 +26,14 @@ export const publicacionUsuario = () => {
 <section class="container-columns">
 <br><br><br><br><br><br> 
   <div class="column1">
+  
+ 
+
+
     <div class="profile-section">
-      <img id="profilePhoto" class="profile-picture" src="" alt="">
+    <img class="fotoperfil" src="${user.photoURL}">
     </div>
-      <h2 class="user-name"></h2>
+    <p> Bienvenida ${user.displayName}</p>
   </div>
   <div class="column2">
   <textarea placeholder="Comparte tus ideas" id="comentario" cols="30" rows="10"></textarea>
@@ -42,7 +50,11 @@ export const publicacionUsuario = () => {
     <a href=https://laquintaemprende.cl/eventos/seminario-online-mujeres-emprendedoras><img src="img/evento3.jpg" alt=""></a>
     <a href=https://laquintaemprende.cl/2020/04/01/comienza-de-forma-gratuita-y-online-el-viaje-de-la-emprendedora><img src="img/evento1.png" alt=""></a>
   </div>
+  <button id="atras" class="large material-icons">navigate_before</button>
+  <button id="adelante" class="large material-icons">autorenew</button>
+  <button id="recargar" class="large material-icons">navigate_next</button> 
 </section>
+
 <div class="footer">
   <p>Copyright by Marcela / Paula & Yosliana / 2020 / Laboratoria013</p>
 </div>
@@ -50,5 +62,24 @@ export const publicacionUsuario = () => {
 `;
   const divElemen = document.createElement('div');
   divElemen.innerHTML = muroEmprendedora;
+  const btnCerrarSesion = divElemen.querySelector('#cerrar');
+  btnCerrarSesion.addEventListener('click', () => {
+    cerrarSesion();
+  });
+
+  const atras = divElemen.querySelector('#atras');
+  atras.addEventListener('click', () => {
+    window.history.go(-1);
+  });
+  const recargar = divElemen.querySelector('#recargar');
+  recargar.addEventListener('click', () => {
+    window.history.go(0);
+  });
+  const adelante = divElemen.querySelector('#adelante');
+  adelante.addEventListener('click', () => {
+    window.history.go(1);
+  });
+
+
   return divElemen;
 };
