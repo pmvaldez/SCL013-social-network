@@ -274,3 +274,218 @@
     }
 
 }
+
+.father {
+  display: flex;
+}
+
+  .header {
+    display: flex;
+  }
+    
+    .banner {
+      position: absolute;
+      width: 1400px;
+      height: 81px;
+      left: 0px;
+      top: 0px;
+      background: linear-gradient(86.51deg, rgba(239, 194, 228, 0.17) 0.09%, rgba(122, 62, 190, 0.33) 99.92%);
+    }
+
+    @media (min-width:400px){
+      .banner {
+        width: 400px;
+        height: 81px;
+      }
+    }
+
+    @media (max-width:1400px){
+      .banner {
+        width: 1400px;
+        height: 81px;
+      }
+    }
+
+    .imgLogo {
+      position: absolute;
+      width: 19em;
+      height: 17em;
+      left: 8px;
+      top: -67px;
+    } 
+  
+    #check {
+      display: none;
+    }
+
+    #check:checked ~ .sidebarNav {
+      width: 27%;
+    }
+
+    .sidebarNav {
+      position: fixed;
+      top: 77px;
+      width: 0px;
+      height: 100vh;
+      background: linear-gradient(90.02deg, rgba(239, 194, 228, 0.17) 17.4%, rgba(122, 62, 190, 0.33) 83.92%);
+      transition: all 300ms;
+      overflow: hidden;
+    }
+
+    .sidebar label span{
+      position: fixed;
+      top: 80px;
+      left: 10px;
+      width: 40px;
+      text-align: center;
+      font-size: 30px;
+      border: 3px solid #a15fec;
+      color: #a15fec;
+      border-radius: 25%;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 300ms;
+    }
+
+    .sidebar label span:hover {
+      background: rgba(241, 57, 195, 0.2);
+    }
+
+    .sidebarNav ul li {
+      color: #764BC4;
+      list-style: none;
+      padding: 15px 10px;
+      border-bottom: 1px solid rgba(100, 100, 100, .3);
+      text-align: center;
+      cursor: pointer;
+      transition: all 300ms;
+      
+    }
+
+    .sidebarNav ul li:hover {
+      background: rgba(241, 57, 195, 0.2);
+    }
+
+    .container-columns {
+    width: 100%;
+    /*margin: auto;*/
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  /*@media all and (max-width: 800px){
+    .container-columns {
+      flex-direction: column;
+    }
+    .column3 {
+      display: flex;
+      flex-flow: row wrap;
+      flex-direction: row-reverse;
+    }
+  }*/
+
+    .column1{
+      width: 27%;
+      display: flex;
+      flex: 1 1 auto;
+      /*float: left;*/
+      margin-top: 20px;
+      padding: 20px 20px;
+      box-sizing: border-box;
+      margin-bottom: 50px;
+      margin: auto;
+    }
+
+      .profile-picture {
+        /*width: 60px;*/
+        height: 60px;
+        border-radius: 50%;
+        margin-right: 1em;
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+      }
+
+      .user-name {
+        font-size: 1.5em;
+        color: #070707;
+        font-family: 'Noto Sans', sans-serif;
+        text-align: center;
+      }
+
+    .column2{
+      width: 46%;
+      flex: 2 1 auto;
+      display: flex;
+      /*float: left;*/
+      margin-top: 20px;
+      padding: 20px 20px;
+      box-sizing: border-box;
+      margin-bottom: 50px;
+      
+    }
+
+      .column2 textarea {
+        position: absolute;
+        margin-top: 80px;
+        width: 35%;
+        height: 104px;
+        background: #FFFFFF;
+        mix-blend-mode: normal;
+        border: 1px solid #C89DF9;
+        box-sizing: border-box;
+        box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.22);
+        border-radius: 6px;
+      }
+
+      .btn-post {
+        position: absolute;
+        width: 108px;
+        height: 30px;
+        background: #4947B0;
+        border-radius: 4px;
+        margin-top: 200px;
+      }
+
+    .column3 {
+      width: 27%;
+      flex: 1 1 auto;     
+     /* float: left;*/
+      margin-top: 90px;
+      padding: 20px 20px;
+      box-sizing: border-box;
+      margin-bottom: 50px;
+      margin: auto;
+    }
+      
+      .column3 img{
+        width: 100%;
+        margin: 10px;
+        /*display: flex;
+        flex-flow: row wrap;
+        flex: 1 1 40%;*/
+      }
+
+  .footer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 0px;
+    width: 100%;    
+    background: linear-gradient(86.51deg, rgba(239, 194, 228, 0.17) 0.09%, rgba(122, 62, 190, 0.33) 99.92%);
+    color: black;
+  }
+
+h1 {
+  font-size: 2em;
+  color: rgba(114, 46, 133, 0.8);
+}
+  
+h3 {
+  font-size: 1.6em;
+  margin-top: 100px;
+  text-align: center;
+  color: rgba(114, 46, 133, 0.8);
+}
+
