@@ -58,8 +58,9 @@ export const funLoginUsuario = (correoLogin, contrasenaLogin) => {
 
 // Inicio de sesion con Google
 export const funLoginGoogle = () => {
+  window.location.hash = '#/publicaciones'
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function (result) {
+  firebase.auth().signInWithPopup(provider).then((result) => {
     // Esto te da un token de acceso de Google. Puede usarlo para acceder a la API de Google.
     const token = result.credential.accessToken;
     // La información de usuario que ha iniciado sesión.
