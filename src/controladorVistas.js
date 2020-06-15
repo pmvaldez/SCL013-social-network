@@ -33,7 +33,10 @@ export const cambioRuta = ((hash) => {
   if (hash === '#/registro') {
     return cambioVista(hash);
   }
-   if (hash === '#/olvidocontrasena') {
+  if (hash === '#/olvidocontrasena') {
+    return cambioVista(hash);
+  }
+  if (hash === '#/publicaciones') {
     return cambioVista(hash);
   }
   return cambioVista(hash);
