@@ -41,6 +41,7 @@ export const publicacionUsuario = () => {
     <input class='correo' type="file" id="imagen">
     <img id="foto"/>
     <button id="btnGuardarComentario" class="btn-post">Publicar</button>
+    <button id="btnEditarComentario">Guarda Comentario Editado</button>
     <h1 id='mensajeLogin'></h1>
     <div id="publicarC"> </div>
 
