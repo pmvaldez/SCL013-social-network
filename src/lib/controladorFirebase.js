@@ -165,6 +165,12 @@ export const editaComentario = (event) => {
   
   console.log( " Editar", event.target.dataset.coment)
   document.querySelector('#comentario').value= event.target.dataset.coment
+  document.getElementById('btnGuardarComentario').style.visibility="hidden"
+
+  
+const guardarComentarioEditado = document.querySelector('#btnEditarComentario');
+guardarComentarioEditado.addEventListener ('click', () => {
+
   const datosEditados=  firebase.firestore()
   .collection("comentario").doc(event.target.dataset.id);
   // Set the "capital" field of the city 'DC'
@@ -180,9 +186,8 @@ export const editaComentario = (event) => {
       // The document probably doesn't exist.
       console.error("Error updating document: ", error);
   });
-
 }
-
+)};
 // Elimina Comentarios 
 export const borrarDatos = (event) => {
   console.log( " Evento", event.target.dataset)
