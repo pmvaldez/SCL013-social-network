@@ -124,7 +124,7 @@ export const guardarComentario = () => {
     })
     .then(function (docRef) {
       document.querySelector("#comentario").value = "";
-      return publicarComentario()
+      publicarComentario()
       //console.log("Document written with ID: ", docRef.id);
 
     })
@@ -138,22 +138,66 @@ export const guardarComentario = () => {
 // Publica Comentario
 export const publicarComentario = () => {
   const publicarC = document.getElementById("publicarC");
-  publicarC.innerHTML = '';
+  
   firebase.firestore().collection("comentario").orderBy("fecha", "desc")
   .onSnapshot((querySnapshot) => {
-
-    querySnapshot.forEach((doc) => {
+    publicarC.innerHTML = '';
+        querySnapshot.forEach((doc) => {
+    
       publicarC.innerHTML += `
-    <div id="register" data-id='${doc.id}'>
+    <div id="register">
     <p>  ${doc.data().coment}  </p>
-    <button id=eliminar>Eliminar</button>
-    <button class='submit'>Editar</button>
-    </div>`
-
-    });
-
+    <button name="eliminarPost" data-id="${doc.id}">Eliminar</button>
+    <button name="editarPost" data-id="${doc.id}" data-coment="${doc.data().coment}">Editar</button>
+     </div>`
+         });
+     const btnEliminar = document.getElementsByName('eliminarPost')
+       for (let i = 0; i < btnEliminar.length; i++) {
+      btnEliminar[i].addEventListener('click',borrarDatos); }
+     const btnEditar = document.getElementsByName('editarPost')
+     for (let i = 0; i < btnEditar.length; i++) {
+    btnEditar[i].addEventListener('click', editaComentario); }
   });
 }
+
+// Edita Coemntarios 
+export const editaComentario = (event) => {
+  
+  console.log( " Editar", event.target.dataset.coment)
+  document.querySelector('#comentario').value= event.target.dataset.coment
+  const datosEditados=  firebase.firestore()
+  .collection("comentario").doc(event.target.dataset.id);
+  // Set the "capital" field of the city 'DC'
+  const comentarioEditado = document.querySelector('#comentario').value
+  
+  return datosEditados.update({
+      coment: comentarioEditado
+  })
+  .then(function() {
+      console.log("Document successfully updated!");
+  })
+  .catch(function(error) {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+  });
+
+}
+
+// Elimina Comentarios 
+export const borrarDatos = (event) => {
+  console.log( " Evento", event.target.dataset)
+  firebase.firestore()
+  .collection("comentario")
+  .doc(event.target.dataset.id)
+
+  .delete()
+  .then(function() {
+    console.log("Document successfully deleted!");
+    }).catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+}
+
 
 //Carga Imagen
 export const subirImagen = () => {
