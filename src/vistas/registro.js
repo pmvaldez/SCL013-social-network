@@ -4,7 +4,7 @@ export const registroUsuario = () => {
   const registroEmprendedora = `
   <div class="container">
       <section id="start">
-      <img src="img/WomenBanner.png" class="imgLogo">  
+      <img src="img/newLogo.png" class="imgLogo">  
       </section>
       <section class="index-padre">
       <div class="index-img-message">

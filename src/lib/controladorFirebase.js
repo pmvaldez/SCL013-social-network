@@ -12,7 +12,6 @@ export const configuracionFirebase = () => {
     // Inicializar Firebase
   firebase.initializeApp(firebaseConfig);
 };
-
 // Registro nuevos Usuarios
 export const funRegistroUsuario = (correoRegistro, contrasenaRegistro) => {
   firebase.auth().createUserWithEmailAndPassword(correoRegistro, contrasenaRegistro)
@@ -55,7 +54,6 @@ export const funLoginUsuario = (correoLogin, contrasenaLogin) => {
       // mensajeLogin.innerHTML = 'Ocurrio un error';
     });
 };
-
 // Inicio de sesion con Google
 export const funLoginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -63,11 +61,9 @@ export const funLoginGoogle = () => {
     .signInWithPopup(provider)
     .then(function (result) { 
     // Esto te da un token de acceso de Google. Puede usarlo para acceder a la API de Google.
-    
    const token = result.credential.accessToken;
    // La información de usuario que ha iniciado sesión.
     const user = result.user;
-    
     window.location.hash = '#/publicaciones';
     //console.log('usuario', user);
     //console.log('foto', user.photoURL);
@@ -84,12 +80,9 @@ export const funLoginGoogle = () => {
     // ...
   });
 };
-
 export const getUser =() =>{
   return firebase.auth().currentUser
 }
-
-
 // Inicio de sesion con Facebook
 export const funLoginFacebook = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
@@ -103,7 +96,6 @@ export const funLoginFacebook = () => {
     // La información de usuario que ha iniciado sesión.
     const user = result.user;
    // console.log('user', user);
-
   }).catch(function (error) {
     // Manejar errores aquí.
     const errorCode = error.code;
@@ -115,7 +107,6 @@ export const funLoginFacebook = () => {
     // ...
   });
 };
-
 export const guardarComentario = () => {
   const comentario = document.querySelector("#comentario").value;
   firebase.firestore().collection("comentario").add({
@@ -126,24 +117,18 @@ export const guardarComentario = () => {
       document.querySelector("#comentario").value = "";
       publicarComentario()
       //console.log("Document written with ID: ", docRef.id);
-
     })
     .catch(function (error) {
       console.error("Error adding document: ", error);
     });
-
 }
-
-
 // Publica Comentario
 export const publicarComentario = () => {
   const publicarC = document.getElementById("publicarC");
-  
   firebase.firestore().collection("comentario").orderBy("fecha", "desc")
   .onSnapshot((querySnapshot) => {
     publicarC.innerHTML = '';
         querySnapshot.forEach((doc) => {
-    
       publicarC.innerHTML += `
     <div id="register">
     <p>  ${doc.data().coment}  </p>
@@ -159,23 +144,17 @@ export const publicarComentario = () => {
     btnEditar[i].addEventListener('click', editaComentario); }
   });
 }
-
 // Edita Coemntarios 
 export const editaComentario = (event) => {
-  
   console.log( " Editar", event.target.dataset.coment)
   document.querySelector('#comentario').value= event.target.dataset.coment
   document.getElementById('btnGuardarComentario').style.visibility="hidden"
-
-  
 const guardarComentarioEditado = document.querySelector('#btnEditarComentario');
 guardarComentarioEditado.addEventListener ('click', () => {
-
   const datosEditados=  firebase.firestore()
   .collection("comentario").doc(event.target.dataset.id);
   // Set the "capital" field of the city 'DC'
   const comentarioEditado = document.querySelector('#comentario').value
-  
   return datosEditados.update({
       coment: comentarioEditado
   })
@@ -194,7 +173,6 @@ export const borrarDatos = (event) => {
   firebase.firestore()
   .collection("comentario")
   .doc(event.target.dataset.id)
-
   .delete()
   .then(function() {
     console.log("Document successfully deleted!");
@@ -202,8 +180,6 @@ export const borrarDatos = (event) => {
           console.error("Error removing document: ", error);
         });
 }
-
-
 //Carga Imagen
 export const subirImagen = () => {
   const ref = firebase.storage().ref();
@@ -225,7 +201,6 @@ export const subirImagen = () => {
       image.src = url;
     })
 }
-
 // Funcion Olvido Contraseña
 export const restablecerContrasena = (correoOlvidoContrasena) => {
   // [START sendpasswordemail]
@@ -251,10 +226,8 @@ export const restablecerContrasena = (correoOlvidoContrasena) => {
  });
   // [END sendpasswordemail];
 };
-
 // Guarda datos 
 export const datosPerfil = (nombre, apellido, ciudad, oficio, fecha) => {
-  
   firebase.firestore().collection("users").add({
     uid:user.uid,
       nombre: nombre,  
@@ -274,15 +247,11 @@ export const datosPerfil = (nombre, apellido, ciudad, oficio, fecha) => {
     .catch(function (error) {
       console.error("Error adding document: ", error);
     });
-
 }
-
-
 // Funcion Cerra Sesion 
 export const cerrarSesion = () => {
   firebase.auth().signOut().then(function () {
     window.location.hash = '#/login';
-    
     //console.log ("correoLogin")
     // Sign-out successful.
   }).catch(function (error) {

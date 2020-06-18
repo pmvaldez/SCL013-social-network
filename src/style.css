@@ -12,7 +12,7 @@
 }
 #start {
 width: 100%;
-height: 4em;
+height: 7em;
 background: linear-gradient(86.51deg, rgba(239, 194, 228, 0.17) 0.09%, rgba(122, 62, 190, 0.33) 92.64%);
 display: flex;
 flex-direction: row;
@@ -23,9 +23,12 @@ box-sizing: border-box;
 position: relative;   
 }  
 #start .imgLogo {
-  width: 14em;
-  height: 14em;
-  margin-top: 49px;
+  width: 11em;
+  height: 11em;
+  margin-top: 17px;
+  display: block;
+  position: absolute;
+  left: calc(46% - 73px);
 }
 .index-padre {
   display: flex;
@@ -243,6 +246,121 @@ footer{
   font-size: 1.8vw;
   text-align: center;
   width: 90%;
+}
+#check {
+  display: none;
+}
+#check:checked ~ .sidebarNav {
+  width: 57%;
+}
+.sidebarNav {
+  position: fixed;
+  top: 96px;
+  width: 0px;
+  height: 40vh;
+  background: linear-gradient(90.02deg, rgba(239, 194, 228, 0.17) 17.4%, rgba(122, 62, 190, 0.33) 83.92%);
+  transition: all 300ms;
+  overflow: hidden;
+}
+.sidebar label span{
+  position: fixed;
+  top: 34px;
+  left: 14px;
+  width: 35px;
+  text-align: center;
+  font-size: 38px;
+  color: #580dad;
+  border-radius: 25%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 300ms;
+}
+.sidebar label span:hover {
+  background: rgba(241, 57, 195, 0.2);
+}
+.sidebarNav ul li {
+  color: #220752;
+  list-style: none;
+  padding: 20px 30px;
+  border-bottom: 1px solid rgba(100, 100, 100, .3);
+  text-align: center;
+  cursor: pointer;
+  transition: all 300ms;
+  
+}
+.sidebarNav ul li:hover {
+  background: rgba(241, 57, 195, 0.2);
+}
+.title-new-post {
+  background: linear-gradient(90.02deg, rgba(239, 194, 228, 0.17) 17.4%, rgba(122, 62, 190, 0.33) 83.92%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+.user-foto {
+  width: 50px;
+  height: 50px;
+  margin: 5px 10px;
+  border-radius: 5em;
+}
+.comun-ocupation {
+  display: flex;
+  flex-direction: row;
+}
+.new-post {
+  width: 100%;
+  border: 1px solid #CCCCCC;
+  padding: 20px 20px 10px 20px;
+}
+.new-post textarea {
+  width: 100%;
+  margin: auto;
+  height: 100px;
+  border: 1px solid #CCCCCC;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 10px;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+}
+.camera-privacity {
+  display: flex;
+  align-items: center;
+}
+
+.camera-privacity div {
+  margin: 0px 20px;
+}
+
+.upload{
+  display: none;
+}
+.camera {
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+}
+.btn-post{
+  width: 6em;
+  height: 2em;
+  color: #fff;
+  background-color: #370138;
+  border-style: none;
+  font-family: 'Noto Sans', sans-serif;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+.hide {
+  display: none !important;
+}
+.column3 {
+  display: none;
+}
+.time {
+  display: flex;
+  flex-direction: row;
 }
 @media (max-width:768px) {
   .container {
