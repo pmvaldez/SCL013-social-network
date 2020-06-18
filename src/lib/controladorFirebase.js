@@ -12,6 +12,28 @@ export const configuracionFirebase = () => {
     // Inicializar Firebase
   firebase.initializeApp(firebaseConfig);
 };
+
+//Funcion Obervador Usuario Logueado
+
+export const ObservadorUsuario = () =>{ 
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      let displayName = user.displayName;
+      let email = user.email;
+      let emailVerified = user.emailVerified;
+      let photoURL = user.photoURL;
+      var isAnonymous = user.isAnonymous;
+      var uid = user.uid;
+      var providerData = user.providerData;
+      
+      document.getElementById('login').innerHTML="Logueado "+user.email;
+      console.log(user);
+    } else {
+      document.getElementById('login').innerHTML="No Logueado ";
+    }
+    });
+  }
+
 // Registro nuevos Usuarios
 export const funRegistroUsuario = (correoRegistro, contrasenaRegistro) => {
   firebase.auth().createUserWithEmailAndPassword(correoRegistro, contrasenaRegistro)
@@ -29,8 +51,23 @@ export const funRegistroUsuario = (correoRegistro, contrasenaRegistro) => {
       } if (error.code === 'auth/email-already-in-use') {
         mensajeRegistro.innerHTML = 'Cuenta ya existe';
       }
-    });
+    })
+    .then(function (){
+      verificarCuenta()
+    })
+    
 };
+
+// verificar email
+export const verificarCuenta = () =>{
+  const user = firebase.auth().currentUser;
+  user.sendEmailVerification().then(function() {
+    // Email sent.
+  }).catch(function(error) {
+    // An error happened.
+  });
+
+}
 // Inicio Sesión usuario
 export const funLoginUsuario = (correoLogin, contrasenaLogin) => {
   firebase.auth().signInWithEmailAndPassword(correoLogin, contrasenaLogin)
