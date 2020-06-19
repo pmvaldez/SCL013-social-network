@@ -1,4 +1,8 @@
-import { funRegistroUsuario, funLoginGoogle, funLoginFacebook } from '../lib/controladorFirebase.js';
+import {
+  funRegistroUsuario,
+  funLoginGoogle,
+  funLoginFacebook,
+} from '../lib/controladorFirebase.js';
 
 export const registroUsuario = () => {
   const registroEmprendedora = `

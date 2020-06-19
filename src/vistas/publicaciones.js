@@ -1,4 +1,10 @@
-import { cerrarSesion, getUser, publicarComentario, subirImagen, guardarComentario } from '../lib/controladorFirebase.js';
+import {
+  cerrarSesion,
+  getUser,
+  cargarComentarios,
+  subirImagen,
+  guardarComentario,
+} from '../lib/controladorFirebase.js';
 
 export const publicacionUsuario = () => {
   const user = getUser();
@@ -36,18 +42,14 @@ export const publicacionUsuario = () => {
             <input type="file" id="imagen" class="upload" accept="image/jpeg, image/png, image/gif">
             <img class ="camera" src="./img/camera.png">
             </label>
-          <img id="foto"/>
+          <img class ="fotopost" id="foto"/>
         </div>
         <button id="btnGuardarComentario" class="btn-post">Publicar</button>
         <button id="btnEditarComentario">Guarda Comentario Editado</button>
         <h1 id='mensajeLogin'></h1>
         <div id="publicarC"> </div>
       </div>
-      <div class="title-new-post">
-      <img src="${user.photoURL}" alt="" class="user-foto">
-      <div>
-        <h4>${user.displayName}</h4> 
-      </div>
+
       <div class="column3">
         <h3>Eventos</h3>
         <a href=https://mujeresemprendedoras.cl/web><img src="img/evento.jpg" alt=""></a>
@@ -68,13 +70,15 @@ export const publicacionUsuario = () => {
    </div>
   </div>    
   `;
+
+
   const divElemen = document.createElement('div');
   divElemen.innerHTML = muroEmprendedora;
   const btnGuardarPost = divElemen.querySelector('#btnGuardarComentario');
- btnGuardarPost.addEventListener('click', () => {
-    publicarComentario(); 
-    subirImagen (); 
-    guardarComentario ();
+  btnGuardarPost.addEventListener('click', () => {
+    cargarComentarios();
+    subirImagen();
+    guardarComentario();
   });
   const btnCerrarSesion = divElemen.querySelector('#cerrar');
   btnCerrarSesion.addEventListener('click', () => {
@@ -92,5 +96,9 @@ export const publicacionUsuario = () => {
   adelante.addEventListener('click', () => {
     window.history.go(1);
   });
+  // const publicarC = document.querySelector('#publicarC');
+  // publicarC.addEventListener('load', () => cargarComentarios());
+  // cargarComentarios();
+
   return divElemen;
 };

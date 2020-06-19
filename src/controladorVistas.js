@@ -2,7 +2,8 @@ import { ingresarUsuario } from './vistas/login.js';
 import { registroUsuario } from './vistas/registro.js';
 import { publicacionUsuario } from './vistas/publicaciones.js';
 import { olvidoContrasenaUsuario } from './vistas/olvidocontrasena.js';
-import {perfilUsuario} from './vistas/perfildeusuario.js';
+import { perfilUsuario } from './vistas/perfildeusuario.js';
+import { cargarComentarios } from './lib/controladorFirebase.js';
 
 const cambioVista = (hash) => {
   const container = document.getElementById('root');
@@ -19,10 +20,11 @@ const cambioVista = (hash) => {
       break;
     case '#/publicaciones':
       container.appendChild(publicacionUsuario());
+      cargarComentarios();
       break;
     case '#/perfildeusuario':
       container.appendChild(perfilUsuario());
-      break;  
+      break;
     case '#/olvidocontrasena':
       container.appendChild(olvidoContrasenaUsuario());
       break;
