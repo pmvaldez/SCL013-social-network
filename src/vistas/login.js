@@ -36,10 +36,8 @@ export const ingresarUsuario = () => {
         <div class="container-body">
           <div class="colum1">
             <h1>Woman Today</h1>
-            <p>Esta parte del parrafo la usaremos para describir mas 
-            nuestra red social , este 
-            texto es solo para llenara informacion en el cuadro de informacion 
-            de la compañia.</p>
+            <p>Comunidad virtual abierta ¡Únete a nostras 
+            y atrevete a inventar tu propio camino!.</p>
           </div>
           <div class="colum2">
             <h1>Redes Sociales</h1>
