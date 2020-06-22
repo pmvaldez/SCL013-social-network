@@ -62,7 +62,12 @@ export const funLoginUsuario = (correoLogin, contrasenaLogin) => {
     .then(() => {
       const mensajeLogin = document.querySelector('#mensajeLogin');
       mensajeLogin.innerHTML = '';
-      window.location.hash = '#/publicaciones';
+      if (firebase.auth().currentUser.emailVerified === true){
+        window.location.hash = '#/publicaciones';}
+        else {
+          mensajeLogin.innerHTML = '⚠️ Debe Verificar cuenta'
+        }
+     
     })
     .catch((error) => {
       // mensajeLogin.classList.add('mensajeError');
