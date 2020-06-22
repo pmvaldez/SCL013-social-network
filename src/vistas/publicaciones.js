@@ -37,15 +37,19 @@ export const publicacionUsuario = () => {
       <div class="new-post">
         <textarea placeholder="Comparte tus ideas" id="comentario" rows="4" cols="50"></textarea>
         
+
+
         <div class="container-button">
-            <label for="imagen">
-            <input type="file" id="imagen" class="upload" accept="image/jpeg, image/png, image/gif">
-            <img class ="camera" src="./img/camera.png">
-            </label>
+           <form action="" id="upload">
+          <input type="file" id="uploarder" accept="image/jpeg, image/png, image/gif">
+        </form>
+        <div id="output" class="row">
+        </div>
+      </div>
           <img class ="fotopost" id="foto"/>
         </div>
         <button id="btnGuardarComentario" class="btn-post">Publicar</button>
-        <button id="btnEditarComentario">Guarda Comentario Editado</button>
+        <button id="btnEditarComentario" class="btn-post">Guardar</button>
         <h1 id='mensajeLogin'></h1>
         <div id="publicarC"> </div>
       </div>
@@ -77,9 +81,13 @@ export const publicacionUsuario = () => {
   const btnGuardarPost = divElemen.querySelector('#btnGuardarComentario');
   btnGuardarPost.addEventListener('click', () => {
     cargarComentarios();
-    subirImagen();
     guardarComentario();
   });
+  const uploarder = divElemen.querySelector('#uploarder');
+  uploarder.addEventListener('change', () => {
+    subirImagen()
+  });
+
   const btnCerrarSesion = divElemen.querySelector('#cerrar');
   btnCerrarSesion.addEventListener('click', () => {
     cerrarSesion();

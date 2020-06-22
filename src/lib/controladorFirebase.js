@@ -63,6 +63,7 @@ export const funLoginUsuario = (correoLogin, contrasenaLogin) => {
       const mensajeLogin = document.querySelector('#mensajeLogin');
       mensajeLogin.innerHTML = '';
       window.location.hash = '#/publicaciones';
+     
     })
     .catch((error) => {
       // mensajeLogin.classList.add('mensajeError');
@@ -88,7 +89,8 @@ export const funLoginGoogle = () => {
       const token = result.credential.accessToken;
       const user = result.user;
       window.location.hash = '#/publicaciones';
-      guardaDatos(user);
+      
+       guardaDatos(user);
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -113,26 +115,55 @@ export const funLoginFacebook = () => {
       const credential = error.credential;
     });
 };
-export const getUser = () => {
-  return firebase.auth().currentUser;
+export const getUser = () => firebase.auth().currentUser;
+
+export const subirImagen = (e) => {
+  const storage = firebase.storage().ref();
+  const img = storage.child('img');
+  const form = document.getElementById('upload');
+  const output = document.getElementById('output');
+  
+  Array.from(event.target.files).forEach(file=> {
+    let uploadTask = img.child(new Date() + file.name).put(file)
+    console.log(uploadTask)
+    uploadTask.on("state_changed", data => {}, err => {},() => {
+      let fileIMG = img.child(file.name)
+       fileIMG.getDownloadURL()
+          .then(url=>{
+                if (file.type.match('image.*')){
+          output.innerHTML+=`
+          <div class='card'>
+          <img src='${url}' class='card-img-top'
+          </div>`  
+        }
+      })
+    })    
+  }) 
 };
 
-/*const postTemplate = (doc) => {
-  // const user = getUser();
-  return `
-    <div id="register" class="title-new-post">
-      <img class='user-foto' src="${doc.data().foto}">
-      <div>
-        <h2 id='nombreUsuario'>${doc.data().mail}</h2>
-        <div class="time">
-          <p id='fechaPublicado'>${new Date().toLocaleString()}</p>
-        </div>
-      </div>
-    </div>
-    <div>
-    </div>`;
+
+
+export const guardarComentario = () => {
+  const comentario = document.querySelector("#comentario").value;
+  let imagenUrl = document.getElementsByClassName('card-img-top');
+  console.log(imagenUrl)
+ for (let i = 0; i < imagenUrl.length; i++) {
+   console.log (imagenUrl[i].src);
+  firebase.firestore().collection('comentario').add({
+    coment: comentario,
+    fecha: new Date(),
+    foto: imagenUrl[i].src,
+    
+  })
+    .then((doc) => {
+      document.querySelector("#comentario").value = "";
+      cargarComentarios();
+    })
+    .catch((error) => {
+      // console.error('Error adding document: ', error);
+    });
+  };
 };
-*/
 
 // Publica Comentario
 export const cargarComentarios = () => {
@@ -142,16 +173,18 @@ export const cargarComentarios = () => {
       document.getElementById('comentario').value = '';
       publicarC.innerHTML = '';
       querySnapshot.forEach((doc) => {
+        const usuario = getUser();
         publicarC.innerHTML += ` 
         <div id="register" class="title-new-post">
-          <img class='user-foto' src="${doc.data().foto}">
+          <img class='user-foto' src="${usuario.photoURL}">
           <div>
-            <h2 id='nombreUsuario'>${doc.data().mail}</h2>
+            <h2 id='nombreUsuario'>${usuario.email}</h2>
             <div class="time">
-              <p id='fechaPublicado'>${new Date().toLocaleString()}</p>
+              <p id='fechaPublicado'>${doc.data().fecha.toDate()}</p>
             </div>
           </div>
           <p>${doc.data().coment}</p>
+          <img src='${doc.data().foto}' >
           <button name="eliminarPost" data-id="${doc.id}">Eliminar</button>
           <button name="editarPost" data-id="${doc.id}" data-coment="${doc.data().coment}">Editar</button>
           </div>
@@ -168,30 +201,14 @@ export const cargarComentarios = () => {
     });
 };
 
-export const guardarComentario = () => {
-  const comentario = document.querySelector('#comentario').value;
-  const user = getUser();
-  firebase.firestore().collection('comentario').add({
-    uid: user.uid,
-    nombre: user.displayName,
-    coment: comentario,
-    fecha: new Date(),
-    foto: user.photoURL,
-    mail: user.email,
-  })
-    .then((doc) => {
-      cargarComentarios();
-    })
-    .catch((error) => {
-      // console.error('Error adding document: ', error);
-    });
-};
+
 
 // Edita Comentarios
 export const editaComentario = (event) => {
   // console.log(' Editar', event.target.dataset.coment);
   document.querySelector('#comentario').value = event.target.dataset.coment;
   document.getElementById('btnGuardarComentario').style.visibility = 'hidden';
+  document.getElementById('btnEditarComentario').style.visibility="visible";
   const guardarComentarioEditado = document.querySelector('#btnEditarComentario');
   guardarComentarioEditado.addEventListener ('click', () => {
     const datosEditados = firebase.firestore()
@@ -202,6 +219,8 @@ export const editaComentario = (event) => {
       coment: comentarioEditado,
     })
       .then(() => {
+    document.getElementById('btnGuardarComentario').style.visibility="visible";
+    document.getElementById('btnEditarComentario').style.visibility="hidden";
         // console.log("Document successfully updated!");
       })
       .catch((error) => {
@@ -223,26 +242,7 @@ export const borrarDatos = (event) => {
        console.error('Error removing document: ', error);
     });
 };
-// Carga Imagen
-export const subirImagen = () => {
-  const ref = firebase.storage().ref();
-  const file = document.querySelector('#imagen').files[0];
-  const name = new Date() + '-' + file.name;
-  const metadata = {
-    contentType: file.type,
-  };
-  const task = ref.child(name).put(file, metadata);
-  const mensajeLogin = document.getElementById('mensajeLogin');
-  task
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then((url) => {
-      mensajeLogin.classList.remove('mensajeError');
-      // console.log(url);
-      mensajeLogin.innerHTML = 'Imagen cargada Exitosamente';
-      const image = document.querySelector('#foto');
-      image.src = url;
-    });
-};
+
 // Funcion Olvido Contraseña
 export const restablecerContrasena = (correoOlvidoContrasena) => {
   // [START sendpasswordemail]
