@@ -7,12 +7,11 @@ export const olvidoContrasenaUsuario = () => {
       <img src="img/newLogo.png" class="imgLogo">  
     </section>
     <br><br>
-    <h2>¿Tienes problemas para iniciar sesión?</h2>
-    <p>Ingresa tu correo electrónico <br>y te enviaremos un enlace para <br>recuperar el acceso a tu cuenta.</p>
-    <input type='text' id='correoOlvidoContrasena' placeholder='Correo electrónico' class='correo'><br>
+    <h2>¿Tienes problemas para iniciar sesión?</h2><br><br>
+    <p>Ingresa tu correo electrónico <br> y te enviaremos un enlace para <br> recuperar el acceso a tu cuenta.</p><br><br>
+      <input type='text' id='correoOlvidoContrasena' placeholder='Correo electrónico' class='correo'><br>
     <button id='btnOlvidoContrasena' class='submit' >Enviar enlace de inicio de sesión</button> <br>
     <a>¿Tienes una cuenta? </a><a href='#/login'>Inicia sesión</a><br><br>
-    <a>¿No tienes cuenta? </a><a href='#/registrate'>Regístrate</a>
     <footer>       
     <div class="container-footer-all">
       <div class="container-body">

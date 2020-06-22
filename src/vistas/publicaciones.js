@@ -19,14 +19,13 @@ export const publicacionUsuario = () => {
         <span>&#9776</span>  
       </label>
       <nav class="sidebarNav">
-        <ul>
-          <li <a id="adelante" href='#/perfildeusuario'>Perfil</a></li>
-          <li <a href="#/eventos">Eventos</a></li>
-          <li <a id="cerrar" href="#/">Cerrar Sesión</a></li>
-        </ul>
+      <ul>
+      <li><a href='#/perfildeusuario'>Perfil Usuario</a></li>
+      <li><a href="#/eventos">Eventos</a></li>
+      <li><a id="cerrar" href="#/">Cerrar Sesión</a></li>
+    </ul>
       </nav>
     </div>
-
     <section class="container-columns"> <br> 
       <div class="title-new-post">
         <img class="user-foto" src="${user.photoURL || './img/profile-ico.png'}" alt="">
@@ -34,19 +33,16 @@ export const publicacionUsuario = () => {
           <p> ${user.email}</p>    
         </div>
       </div>
-      <div class="new-post">
-        <textarea placeholder="Comparte tus ideas" id="comentario" rows="4" cols="50"></textarea>
-        
-
-
-        <div class="container-button">
+      <div class="container-post">
+        <div class="new-post">
+          <textarea placeholder="Comparte tus ideas" id="comentario" rows="4" cols="50"></textarea>
+          <div class="container-button">
            <form action="" id="upload">
-          <input type="file" id="uploarder" accept="image/jpeg, image/png, image/gif">
-        </form>
-        <div id="output" class="row">
-        </div>
-      </div>
-          <img class ="fotopost" id="foto"/>
+             <input type="file" id="uploarder" accept="image/jpeg, image/png, image/gif">
+           </form>
+           <div id="output" class="row"></div>
+          </div>
+          <img id="foto"/>
         </div>
         <button id="btnGuardarComentario" class="btn-post">Publicar</button>
         <button id="btnEditarComentario" class="btn-post">Guardar</button>
@@ -85,7 +81,7 @@ export const publicacionUsuario = () => {
   });
   const uploarder = divElemen.querySelector('#uploarder');
   uploarder.addEventListener('change', () => {
-    subirImagen()
+    subirImagen();
   });
 
   const btnCerrarSesion = divElemen.querySelector('#cerrar');

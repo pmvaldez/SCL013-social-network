@@ -63,7 +63,6 @@ export const funLoginUsuario = (correoLogin, contrasenaLogin) => {
       const mensajeLogin = document.querySelector('#mensajeLogin');
       mensajeLogin.innerHTML = '';
       window.location.hash = '#/publicaciones';
-     
     })
     .catch((error) => {
       // mensajeLogin.classList.add('mensajeError');
@@ -89,8 +88,7 @@ export const funLoginGoogle = () => {
       const token = result.credential.accessToken;
       const user = result.user;
       window.location.hash = '#/publicaciones';
-      
-       guardaDatos(user);
+      guardaDatos(user);
     }).catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -122,47 +120,47 @@ export const subirImagen = (e) => {
   const img = storage.child('img');
   const form = document.getElementById('upload');
   const output = document.getElementById('output');
-  
+
   Array.from(event.target.files).forEach(file=> {
     let uploadTask = img.child(new Date() + file.name).put(file)
-    console.log(uploadTask)
-    uploadTask.on("state_changed", data => {}, err => {},() => {
-      let fileIMG = img.child(file.name)
-       fileIMG.getDownloadURL()
-          .then(url=>{
-                if (file.type.match('image.*')){
-          output.innerHTML+=`
-          <div class='card'>
-          <img src='${url}' class='card-img-top'
-          </div>`  
-        }
-      })
-    })    
-  }) 
+    // console.log(uploadTask)
+    uploadTask.on('state_changed', data => {}, err => {},() => {
+      let fileIMG = img.child(file.name);
+      fileIMG.getDownloadURL()
+        .then(url=> {
+          if (file.type.match('image.*')) {
+            output.innerHTML += `
+            <div class='card'>
+             <img src='${url}' class='card-img-top'
+            </div> 
+            `;
+          }
+        });
+    });
+  });
 };
 
 
-
 export const guardarComentario = () => {
-  const comentario = document.querySelector("#comentario").value;
-  let imagenUrl = document.getElementsByClassName('card-img-top');
-  console.log(imagenUrl)
- for (let i = 0; i < imagenUrl.length; i++) {
-   console.log (imagenUrl[i].src);
-  firebase.firestore().collection('comentario').add({
-    coment: comentario,
-    fecha: new Date(),
-    foto: imagenUrl[i].src,
-    
-  })
-    .then((doc) => {
-      document.querySelector("#comentario").value = "";
-      cargarComentarios();
+  const comentario = document.querySelector('#comentario').value;
+  const imagenUrl = document.getElementsByClassName('card-img-top');
+  // console.log(imagenUrl)
+  for (let i = 0; i < imagenUrl.length; i++) {
+    // console.log (imagenUrl[i].src);
+    firebase.firestore().collection('comentario').add({
+      coment: comentario,
+      fecha: new Date(),
+      foto: imagenUrl[i].src,
+      likes: [],
     })
-    .catch((error) => {
+      .then((doc) => {
+        document.querySelector('#comentario').value = '';
+        cargarComentarios();
+      })
+      .catch((error) => {
       // console.error('Error adding document: ', error);
-    });
-  };
+      });
+  }
 };
 
 // Publica Comentario
@@ -175,19 +173,24 @@ export const cargarComentarios = () => {
       querySnapshot.forEach((doc) => {
         const usuario = getUser();
         publicarC.innerHTML += ` 
-        <div id="register" class="title-new-post">
-          <img class='user-foto' src="${usuario.photoURL}">
-          <div>
-            <h2 id='nombreUsuario'>${usuario.email}</h2>
-            <div class="time">
-              <p id='fechaPublicado'>${doc.data().fecha.toDate()}</p>
+        <div class='each-post'>
+          <div id="register" class="title-new-post">
+            <img class='user-foto' src="${usuario.photoURL}">
+            <div>
+              <h2 id='nombreUsuario'>${usuario.email}</h2>
+              <div class="time">
+                <p id='fechaPublicado'>${doc.data().fecha.toDate()}</p>
+              </div>
             </div>
           </div>
-          <p>${doc.data().coment}</p>
-          <img src='${doc.data().foto}' >
-          <button name="eliminarPost" data-id="${doc.id}">Eliminar</button>
-          <button name="editarPost" data-id="${doc.id}" data-coment="${doc.data().coment}">Editar</button>
+          <div class="body-post">
+            <p>${doc.data().coment}</p>
+            <img class="imgPost" src='${doc.data().foto}' >
+            </div>
+            <button id="btoPost" name="eliminarPost" data-id="${doc.id}">Eliminar</button>
+            <button id="btoPost" name="editarPost" data-id="${doc.id}" data-coment="${doc.data().coment}">Editar</button>
           </div>
+        </div>
       `;
         const btnEliminar = document.getElementsByName('eliminarPost');
         for (let i = 0; i < btnEliminar.length; i++) {
@@ -201,26 +204,24 @@ export const cargarComentarios = () => {
     });
 };
 
-
-
 // Edita Comentarios
 export const editaComentario = (event) => {
   // console.log(' Editar', event.target.dataset.coment);
   document.querySelector('#comentario').value = event.target.dataset.coment;
   document.getElementById('btnGuardarComentario').style.visibility = 'hidden';
-  document.getElementById('btnEditarComentario').style.visibility="visible";
+  document.getElementById('btnEditarComentario').style.visibility = 'visible';
   const guardarComentarioEditado = document.querySelector('#btnEditarComentario');
   guardarComentarioEditado.addEventListener ('click', () => {
     const datosEditados = firebase.firestore()
       .collection('comentario').doc(event.target.dataset.id);
-    // Set the "capital" field of the city 'DC'
+
     const comentarioEditado = document.querySelector('#comentario').value;
     return datosEditados.update({
       coment: comentarioEditado,
     })
       .then(() => {
-    document.getElementById('btnGuardarComentario').style.visibility="visible";
-    document.getElementById('btnEditarComentario').style.visibility="hidden";
+        document.getElementById('btnGuardarComentario').style.visibility = 'visible';
+        document.getElementById('btnEditarComentario').style.visibility = 'hidden';
         // console.log("Document successfully updated!");
       })
       .catch((error) => {
@@ -230,22 +231,38 @@ export const editaComentario = (event) => {
 };
 // Elimina Comentarios
 export const borrarDatos = (event) => {
-  console.log(' Evento', event.target.dataset);
+  // console.log(' Evento', event.target.dataset);
   firebase.firestore()
     .collection('comentario')
     .doc(event.target.dataset.id)
     .delete()
     .then(() => {
-       console.log('Document successfully deleted!');
+      console.log('Document successfully deleted!');
     })
     .catch((error) => {
-       console.error('Error removing document: ', error);
+      console.error('Error removing document: ', error);
     });
 };
-
+/*// Boton like
+const likes = cargarComentarios.querySelector('.like');
+likes.addEventListener('click', (e) => {
+  firebase.firestore().collection('publicaciones').doc(`${doc.id}`).get().then((doc) => {
+    const docLikes = doc.data().likes;
+    const includesUser = docLikes.includes(userId);
+    if (includesUser === true) {
+      firebase.firestore().collection('publicaciones').doc(`${doc.id}`).update({
+        likes: firebase.firestore.FieldValue.arrayRemove(userId),
+      });
+    } else if (includesUser === false) {
+      likes.classList.add('heart-2')
+      firebase.firestore().collection('publicaciones').doc(`${doc.id}`).update({
+        likes: firebase.firestore.FieldValue.arrayUnion(userId),
+      });    }
+  });
+})
+*/
 // Funcion Olvido Contraseña
 export const restablecerContrasena = (correoOlvidoContrasena) => {
-  // [START sendpasswordemail]
   firebase.auth().sendPasswordResetEmail(correoOlvidoContrasena)
     .then(() => {
       window.location.hash = '#/login';
@@ -270,6 +287,7 @@ export const datosPerfil = (nombre, apellido, ciudad, oficio, fecha) => {
     oficio: oficio,
     ciudad: ciudad,
     born: fecha,
+
   })
     .then((docRef) => {
       // console.log('Document written with ID: ', docRef.id);

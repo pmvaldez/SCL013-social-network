@@ -7,8 +7,8 @@ export const perfilUsuario = () => {
   const user = getUser();
   const perfilEmprendedora = `
   <section id="start">
-  <img src="img/WomenBanner.png" class="imgLogo">  
-  </section>
+  <img src="img/newLogo.png" class="imgLogo">  
+</section>
 
 <div class= register>
 <h4>Perfil de Usuario</h4>

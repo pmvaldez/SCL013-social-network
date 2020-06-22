@@ -15,9 +15,7 @@ export const ingresarUsuario = () => {
       <div class="index-img-message">
       <img src="./img/mujeresdos.jpg" alt="social network" class="index-img">
       <!--cambiar por <p>-->
-      <p class="index-message">En WomanToday aca va nuestro slogan
-      Además podrás comunicarte y compartir.
-      ¿Qué esperas? ¡No te pierdas las novedades!</p>
+      <p class="index-message">Comunidad virtual abierta ¡Únete a nostras y atrevete a inventar tu propio camino!</p>
       </div>
     <div class="login">
       <h2>Iniciar Sesión</h2>
