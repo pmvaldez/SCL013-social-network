@@ -20,7 +20,7 @@ export const publicacionUsuario = () => {
       </label>
       <nav class="sidebarNav">
       <ul>
-      <li><a href='#/perfildeusuario'>Perfil Usuario</a></li>
+      <li><a href='#/perfildeusuario'>Perfil Usuario</a ></li>
       <li><a href="#/eventos">Eventos</a></li>
       <li><a id="cerrar" href="#/">Cerrar Sesión</a></li>
     </ul>

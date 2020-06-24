@@ -586,3 +586,11 @@ footer {
     display: none;
   }
 }
+
+.imagenesEvento{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 35%;
+  justify-content: space-evenly;
+}

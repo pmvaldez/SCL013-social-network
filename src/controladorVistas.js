@@ -4,6 +4,7 @@ import { publicacionUsuario } from './vistas/publicaciones.js';
 import { olvidoContrasenaUsuario } from './vistas/olvidocontrasena.js';
 import { perfilUsuario } from './vistas/perfildeusuario.js';
 import { cargarComentarios } from './lib/controladorFirebase.js';
+import { eventos } from './vistas/eventos.js';
 
 const cambioVista = (hash) => {
   const container = document.getElementById('root');
@@ -28,6 +29,9 @@ const cambioVista = (hash) => {
     case '#/olvidocontrasena':
       container.appendChild(olvidoContrasenaUsuario());
       break;
+    case '#/eventos':
+      container.appendChild(eventos());
+      break;
     default:
       container.innerHTML = '<h2>error404</h2>';
   }
@@ -46,6 +50,9 @@ export const cambioRuta = ((hash) => {
     return cambioVista(hash);
   }
   if (hash === '#/publicaciones') {
+    return cambioVista(hash);
+  }
+  if (hash === '#/eventos') {
     return cambioVista(hash);
   }
   return cambioVista(hash);
